@@ -1,11 +1,16 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one: 
+  name: "Math Game"
+  url: "www.math.game"
+  category: "Math"
+two: 
+  name: "Reading Game"
+  url: "www.reading.game"
+  category: "Reading"
+three: 
+  name: "Speaking Game"
+  url: "www.speaking.game"
+  category: "Speaking"
+four: 
+  name: "Writing Game"
+  url: "www.writing.game"
+  category: "Writing"
