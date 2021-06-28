@@ -1,0 +1,1153 @@
+  [1m[35m (17.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (23.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (22.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (19.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-06-27 18:59:58.893921"], ["updated_at", "2021-06-27 18:59:58.893921"]]
+  [1m[35m (11.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 172.20.0.1 at 2021-06-28 00:50:32 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (8.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-6.0.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-6.0.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 55.3ms | Allocations: 467)
+Completed 200 OK in 426ms (Views: 190.6ms | ActiveRecord: 0.0ms | Allocations: 2725)
+
+
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210628005051)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (20.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "username" varchar, "full_name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (10.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210628005051"]]
+  [1m[35m (21.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGames (20210628005200)
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateGames (20210628005200)
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (106.4ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "url" varchar, "category" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (24.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210628005200"]]
+  [1m[35m (64.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGameEvents (20210628005314)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (38.9ms)[0m  [1m[35mCREATE TABLE "game_events" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "game_id" integer, "occured_at" datetime, "type" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_user_id" ON "game_events" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_game_id" ON "game_events" ("game_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (8.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210628005314"]]
+  [1m[35m (18.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (6.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: Using `bin/rake routes` is deprecated and will be removed in Rails 6.1. Use `bin/rails routes` instead.
+ (called from load at /usr/local/bundle/bin/rake:23)
+Started POST "/api/user" for 172.20.0.1 at 2021-06-28 01:17:53 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (5.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [POST] "/api/user"):
+  
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/api/users" for 172.20.0.1 at 2021-06-28 01:18:52 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::UsersController#create as */*
+  Parameters: {"email"=>"dev.alex.myers@gmail.com", "username"=>"dev", "full_name"=>"Alex Myers", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 170ms (ActiveRecord: 27.8ms | Allocations: 7877)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'password' for User.):
+  
+app/controllers/api/users_controller.rb:5:in `create'
+Started POST "/api/users" for 172.20.0.1 at 2021-06-28 01:20:08 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"email"=>"dev.alex.myers@gmail.com", "username"=>"dev", "full_name"=>"Alex Myers", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (26.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "username", "full_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "dev.alex.myers@gmail.com"], ["password_digest", "$2a$12$iPInhXCyaK8kpm/O35rn2e3sMJH3KNVeMlBMNbOrRUOACdD7ZKRDW"], ["username", "dev"], ["full_name", "Alex Myers"], ["created_at", "2021-06-28 01:20:09.467144"], ["updated_at", "2021-06-28 01:20:09.467144"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[35m (17.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 200 OK in 787ms (Views: 0.8ms | ActiveRecord: 116.7ms | Allocations: 10926)
+
+
+Started POST "/api/users" for 172.20.0.1 at 2021-06-28 01:22:23 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"email"=>"dev.alex.myers@gmail.com", "username"=>"dev", "full_name"=>"Alex Myers", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (65.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "username", "full_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "dev.alex.myers@gmail.com"], ["password_digest", "$2a$12$uZ0cwzONTKkCcVFvAKY84eGxD1h3k7fAyo7xEo/IQu.u4N93us.sC"], ["username", "dev"], ["full_name", "Alex Myers"], ["created_at", "2021-06-28 01:22:24.280392"], ["updated_at", "2021-06-28 01:22:24.280392"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[35m (56.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+Completed 201 Created in 588ms (Views: 0.5ms | ActiveRecord: 148.5ms | Allocations: 10486)
+
+
+Started POST "/api/sessions" for 172.20.0.1 at 2021-06-28 01:24:33 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [POST] "/api/sessions"):
+  
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/api/sessions" for 172.20.0.1 at 2021-06-28 01:25:37 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [POST] "/api/sessions"):
+  
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/api/sessions" for 172.20.0.1 at 2021-06-28 01:27:16 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ArgumentError (You should not use the `match` method in your router without specifying an HTTP method.
+If you want to expose your action to both GET and POST, add `via: [:get, :post]` option.
+If you want to expose your action to GET, use `get` in the router:
+  Instead of: match "controller#action"
+  Do: get "controller#action"):
+  
+config/routes.rb:6:in `block (2 levels) in <main>'
+config/routes.rb:2:in `block in <main>'
+config/routes.rb:1:in `<main>'
+Started POST "/api/sessions" for 172.20.0.1 at 2021-06-28 01:27:58 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::SessionsController#login as */*
+  Parameters: {"username"=>"dev", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 7ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 261)
+
+
+Started POST "/api/sessions" for 172.20.0.1 at 2021-06-28 01:28:23 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::SessionsController#login as */*
+  Parameters: {"username"=>"dev", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 128ms (ActiveRecord: 0.0ms | Allocations: 5712)
+
+
+  
+NoMethodError (undefined method `validates_uniquness_of' for #<Class:0x00007fd83c75a938>
+Did you mean?  validates_uniqueness_of):
+  
+app/models/user.rb:7:in `<class:User>'
+app/models/user.rb:1:in `<main>'
+app/controllers/api/sessions_controller.rb:5:in `login'
+Started POST "/api/sessions" for 172.20.0.1 at 2021-06-28 01:28:45 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::SessionsController#login as */*
+  Parameters: {"username"=>"dev", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (9.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dev"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:5:in `login'
+Completed 200 OK in 448ms (Views: 3.7ms | ActiveRecord: 49.9ms | Allocations: 7926)
+
+
+Started POST "/api/sessions" for 172.20.0.1 at 2021-06-28 01:29:37 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::SessionsController#login as */*
+  Parameters: {"username"=>"dev", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dev"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:5:in `login'
+Completed 200 OK in 559ms (Views: 2.4ms | ActiveRecord: 42.5ms | Allocations: 7394)
+
+
+Started GET "/api/games" for 172.20.0.1 at 2021-06-28 01:29:54 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GamesController#index as */*
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 4ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 621)
+
+
+Started GET "/api/games" for 172.20.0.1 at 2021-06-28 01:29:56 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GamesController#index as */*
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 8ms (Views: 0.6ms | ActiveRecord: 0.0ms | Allocations: 566)
+
+
+  [1m[35m (2.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (6.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (4.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.8ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "game_events"[0m
+  [1m[35m (35.3ms)[0m  [1m[35mCREATE TABLE "game_events" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "game_id" integer, "occured_at" datetime, "type" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (32.3ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_game_id" ON "game_events" ("game_id")[0m
+  [1m[35m (32.3ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_user_id" ON "game_events" ("user_id")[0m
+  [1m[35m (11.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (32.2ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "url" varchar, "category" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (10.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (32.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "username" varchar, "full_name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (61.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (38.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210628005314)[0m
+  [1m[35m (47.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210628005051),
+(20210628005200);
+
+[0m
+  [1m[35m (30.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (8.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (23.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-06-28 01:34:56.726642"], ["updated_at", "2021-06-28 01:34:56.726642"]]
+  [1m[35m (44.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (6.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (6.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (29.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "d889755b0e3663d674d31d1cfc440b694fc2d630"], ["created_at", "2021-06-28 01:34:56.885615"], ["updated_at", "2021-06-28 01:34:56.885615"]]
+  [1m[35m (25.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "game_events"[0m
+  [1m[35m (36.7ms)[0m  [1m[35mCREATE TABLE "game_events" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "game_id" integer, "occured_at" datetime, "type" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (29.8ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_game_id" ON "game_events" ("game_id")[0m
+  [1m[35m (31.3ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_user_id" ON "game_events" ("user_id")[0m
+  [1m[35m (12.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (28.9ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "url" varchar, "category" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (13.9ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (31.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "username" varchar, "full_name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (29.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (61.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210628005314)[0m
+  [1m[35m (66.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210628005051),
+(20210628005200);
+
+[0m
+  [1m[35m (63.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (11.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (26.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-06-28 01:34:57.567328"], ["updated_at", "2021-06-28 01:34:57.567328"]]
+  [1m[35m (22.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (5.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (24.7ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-06-28 01:34:57.662203"], ["key", "environment"]]
+  [1m[35m (18.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (11.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (21.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "d889755b0e3663d674d31d1cfc440b694fc2d630"], ["created_at", "2021-06-28 01:34:57.749961"], ["updated_at", "2021-06-28 01:34:57.749961"]]
+  [1m[35m (17.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (28.0ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Math game"], ["url", "www.Math.game"], ["category", "Math"], ["created_at", "2021-06-28 01:34:57.967985"], ["updated_at", "2021-06-28 01:34:57.967985"]]
+  [1m[35m (20.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (157.6ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Reading game"], ["url", "www.Reading.game"], ["category", "Reading"], ["created_at", "2021-06-28 01:34:58.032000"], ["updated_at", "2021-06-28 01:34:58.032000"]]
+  [1m[35m (61.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (27.7ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Speaking game"], ["url", "www.Speaking.game"], ["category", "Speaking"], ["created_at", "2021-06-28 01:34:58.279536"], ["updated_at", "2021-06-28 01:34:58.279536"]]
+  [1m[35m (16.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (34.3ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Writing game"], ["url", "www.Writing.game"], ["category", "Writing"], ["created_at", "2021-06-28 01:34:58.337332"], ["updated_at", "2021-06-28 01:34:58.337332"]]
+  [1m[35m (15.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (5.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (24.7ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Math game"], ["url", "www.Math.game"], ["category", "Math"], ["created_at", "2021-06-28 01:35:59.118794"], ["updated_at", "2021-06-28 01:35:59.118794"]]
+  [1m[35m (19.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (31.1ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Reading game"], ["url", "www.Reading.game"], ["category", "Reading"], ["created_at", "2021-06-28 01:35:59.179543"], ["updated_at", "2021-06-28 01:35:59.179543"]]
+  [1m[35m (17.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (32.1ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Speaking game"], ["url", "www.Speaking.game"], ["category", "Speaking"], ["created_at", "2021-06-28 01:35:59.253697"], ["updated_at", "2021-06-28 01:35:59.253697"]]
+  [1m[35m (16.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (29.8ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Writing game"], ["url", "www.Writing.game"], ["category", "Writing"], ["created_at", "2021-06-28 01:35:59.317492"], ["updated_at", "2021-06-28 01:35:59.317492"]]
+  [1m[35m (22.7ms)[0m  [1m[36mcommit transaction[0m
+Started POST "/api/users" for 172.20.0.1 at 2021-06-28 01:36:05 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"email"=>"dev.alex.myers@gmail.com", "username"=>"dev", "full_name"=>"Alex Myers", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (12.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dev"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (65.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "username", "full_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "dev.alex.myers@gmail.com"], ["password_digest", "$2a$12$pxwlv2hnvoKgs9Ef13r9bO62LcrqhqIjUIf/GjcMRjVh528CZyYtS"], ["username", "dev"], ["full_name", "Alex Myers"], ["created_at", "2021-06-28 01:36:05.936786"], ["updated_at", "2021-06-28 01:36:05.936786"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[35m (36.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (15.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? AND "users"."id" != ? LIMIT ?[0m  [["username", "dev"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+Completed 201 Created in 530ms (Views: 1.0ms | ActiveRecord: 129.1ms | Allocations: 6432)
+
+
+Started GET "/api/games" for 172.20.0.1 at 2021-06-28 01:36:22 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GamesController#index as */*
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 566)
+
+
+Started POST "/api/users" for 172.20.0.1 at 2021-06-28 01:36:25 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::UsersController#create as */*
+  Parameters: {"email"=>"dev.alex.myers@gmail.com", "username"=>"dev", "full_name"=>"Alex Myers", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (6.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dev"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (7.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dev"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+Completed 200 OK in 643ms (Views: 0.4ms | ActiveRecord: 14.1ms | Allocations: 8128)
+
+
+Started POST "/api/sessions" for 172.20.0.1 at 2021-06-28 01:36:32 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::SessionsController#login as */*
+  Parameters: {"username"=>"dev", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (9.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dev"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:5:in `login'
+Completed 200 OK in 360ms (Views: 0.3ms | ActiveRecord: 9.9ms | Allocations: 898)
+
+
+Started GET "/api/games" for 172.20.0.1 at 2021-06-28 01:36:50 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GamesController#index as */*
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 14ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 566)
+
+
+Started GET "/api/games" for 172.20.0.1 at 2021-06-28 01:36:52 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GamesController#index as */*
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 8ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 566)
+
+
+Started GET "/api/games" for 172.20.0.1 at 2021-06-28 01:36:53 +0000
+Cannot render console from 172.20.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GamesController#index as */*
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 566)
+
+
+  [1m[35m (12.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (7.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (12.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (8.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (4.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (7.9ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (5.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "game_events"[0m
+  [1m[35m (22.0ms)[0m  [1m[35mCREATE TABLE "game_events" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "game_id" integer, "occured_at" datetime, "type" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (26.1ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_game_id" ON "game_events" ("game_id")[0m
+  [1m[35m (30.1ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_user_id" ON "game_events" ("user_id")[0m
+  [1m[35m (12.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (33.3ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "url" varchar, "category" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (12.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (37.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "username" varchar, "full_name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (41.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (45.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210628005314)[0m
+  [1m[35m (43.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210628005051),
+(20210628005200);
+
+[0m
+  [1m[35m (25.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (17.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (27.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-06-28 01:40:21.628756"], ["updated_at", "2021-06-28 01:40:21.628756"]]
+  [1m[35m (19.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (4.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (25.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "d889755b0e3663d674d31d1cfc440b694fc2d630"], ["created_at", "2021-06-28 01:40:21.730159"], ["updated_at", "2021-06-28 01:40:21.730159"]]
+  [1m[35m (12.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "game_events"[0m
+  [1m[35m (26.5ms)[0m  [1m[35mCREATE TABLE "game_events" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "game_id" integer, "occured_at" datetime, "type" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (24.9ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_game_id" ON "game_events" ("game_id")[0m
+  [1m[35m (25.0ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_user_id" ON "game_events" ("user_id")[0m
+  [1m[35m (12.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (25.0ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "url" varchar, "category" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (10.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (24.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "username" varchar, "full_name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (33.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (122.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210628005314)[0m
+  [1m[35m (78.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210628005051),
+(20210628005200);
+
+[0m
+  [1m[35m (29.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (10.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (34.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-06-28 01:40:22.378588"], ["updated_at", "2021-06-28 01:40:22.378588"]]
+  [1m[35m (16.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (14.8ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-06-28 01:40:22.461945"], ["key", "environment"]]
+  [1m[35m (15.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (8.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (21.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "d889755b0e3663d674d31d1cfc440b694fc2d630"], ["created_at", "2021-06-28 01:40:22.530074"], ["updated_at", "2021-06-28 01:40:22.530074"]]
+  [1m[35m (13.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (15.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (22.5ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Math game"], ["url", "www.Math.game"], ["category", "Math"], ["created_at", "2021-06-28 01:40:22.740970"], ["updated_at", "2021-06-28 01:40:22.740970"]]
+  [1m[35m (11.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (38.7ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Reading game"], ["url", "www.Reading.game"], ["category", "Reading"], ["created_at", "2021-06-28 01:40:22.786300"], ["updated_at", "2021-06-28 01:40:22.786300"]]
+  [1m[35m (12.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (31.8ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Speaking game"], ["url", "www.Speaking.game"], ["category", "Speaking"], ["created_at", "2021-06-28 01:40:22.851288"], ["updated_at", "2021-06-28 01:40:22.851288"]]
+  [1m[35m (15.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (27.5ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Writing game"], ["url", "www.Writing.game"], ["category", "Writing"], ["created_at", "2021-06-28 01:40:22.916191"], ["updated_at", "2021-06-28 01:40:22.916191"]]
+  [1m[35m (16.5ms)[0m  [1m[36mcommit transaction[0m
+Started POST "/api/users" for 172.21.0.1 at 2021-06-28 01:42:10 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (10.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (4.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"email"=>"dev.alex.myers@gmail.com", "username"=>"dev", "full_name"=>"Alex Myers", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (6.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dev"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (24.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "username", "full_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "dev.alex.myers@gmail.com"], ["password_digest", "$2a$12$SRWmWzfDFDUN8auhJMgZ8Oxo2txVSK5yPzTARMKT0yj5O8PYgox3W"], ["username", "dev"], ["full_name", "Alex Myers"], ["created_at", "2021-06-28 01:42:11.422542"], ["updated_at", "2021-06-28 01:42:11.422542"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[35m (16.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (9.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? AND "users"."id" != ? LIMIT ?[0m  [["username", "dev"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+Completed 201 Created in 483ms (Views: 0.7ms | ActiveRecord: 80.3ms | Allocations: 13981)
+
+
+Started POST "/api/sessions" for 172.21.0.1 at 2021-06-28 01:42:26 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::SessionsController#login as */*
+  Parameters: {"username"=>"dev", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (9.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dev"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:5:in `login'
+Completed 200 OK in 338ms (Views: 0.4ms | ActiveRecord: 9.7ms | Allocations: 1108)
+
+
+Started GET "/api/games" for 172.21.0.1 at 2021-06-28 01:42:43 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GamesController#index as */*
+  [1m[36mUser Load (3.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 3.8ms | Allocations: 3090)
+
+
+  
+NameError (uninitialized constant Api::GamesController::Games):
+  
+app/controllers/api/games_controller.rb:5:in `index'
+Started GET "/api/games" for 172.21.0.1 at 2021-06-28 01:43:04 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::GamesController#index as */*
+  [1m[36mUser Load (5.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+  [1m[36mGame Load (8.0ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/api/games_controller.rb:6:in `index'
+Completed 200 OK in 195ms (Views: 29.3ms | ActiveRecord: 84.2ms | Allocations: 14271)
+
+
+Started POST "/api/user/game_events" for 172.21.0.1 at 2021-06-28 01:52:05 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::GameEventsController#create as */*
+  Parameters: {"type"=>"COMPLETED", "occured_at"=>"Sun, 27 Jun 2021 21:50:18 -0400", "game_id"=>"1"}
+Can't verify CSRF token authenticity.
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 5ms (Views: 0.8ms | ActiveRecord: 0.0ms | Allocations: 301)
+
+
+Started POST "/api/user/game_events" for 172.21.0.1 at 2021-06-28 01:52:28 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GameEventsController#create as */*
+  Parameters: {"type"=>"COMPLETED", "occured_at"=>"Sun, 27 Jun 2021 21:50:18 -0400", "game_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (7.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 500 Internal Server Error in 206ms (ActiveRecord: 16.7ms | Allocations: 9455)
+
+
+  
+ActiveRecord::SubclassNotFound (The single-table inheritance mechanism failed to locate the subclass: 'COMPLETED'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite GameEvent.inheritance_column to use another column for that information.):
+  
+app/controllers/api/game_events_controller.rb:5:in `create'
+Started POST "/api/user/game_events" for 172.21.0.1 at 2021-06-28 01:52:50 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GameEventsController#create as */*
+  Parameters: {"type"=>"completed", "occured_at"=>"Sun, 27 Jun 2021 21:50:18 -0400", "game_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (5.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 500 Internal Server Error in 37ms (ActiveRecord: 5.6ms | Allocations: 1633)
+
+
+  
+ActiveRecord::SubclassNotFound (The single-table inheritance mechanism failed to locate the subclass: 'completed'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite GameEvent.inheritance_column to use another column for that information.):
+  
+app/controllers/api/game_events_controller.rb:5:in `create'
+  [1m[35m (12.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (5.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (8.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (3.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (8.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "game_events"[0m
+  [1m[35m (22.5ms)[0m  [1m[35mCREATE TABLE "game_events" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "game_id" integer, "occured_at" datetime, "type" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (38.6ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_game_id" ON "game_events" ("game_id")[0m
+  [1m[35m (32.5ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_user_id" ON "game_events" ("user_id")[0m
+  [1m[35m (11.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (24.8ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "url" varchar, "category" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (11.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (25.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "username" varchar, "full_name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (26.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (34.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210628005314)[0m
+  [1m[35m (39.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210628005051),
+(20210628005200);
+
+[0m
+  [1m[35m (27.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (10.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (17.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-06-28 01:55:42.351330"], ["updated_at", "2021-06-28 01:55:42.351330"]]
+  [1m[35m (13.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (3.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (24.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "d889755b0e3663d674d31d1cfc440b694fc2d630"], ["created_at", "2021-06-28 01:55:42.420901"], ["updated_at", "2021-06-28 01:55:42.420901"]]
+  [1m[35m (14.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "game_events"[0m
+  [1m[35m (20.6ms)[0m  [1m[35mCREATE TABLE "game_events" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "game_id" integer, "occured_at" datetime, "type" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (25.7ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_game_id" ON "game_events" ("game_id")[0m
+  [1m[35m (21.8ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_user_id" ON "game_events" ("user_id")[0m
+  [1m[35m (10.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "games"[0m
+  [1m[35m (30.1ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "url" varchar, "category" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (12.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (29.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "username" varchar, "full_name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (28.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (34.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210628005314)[0m
+  [1m[35m (45.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210628005051),
+(20210628005200);
+
+[0m
+  [1m[35m (26.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (8.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (60.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-06-28 01:55:42.928510"], ["updated_at", "2021-06-28 01:55:42.928510"]]
+  [1m[35m (130.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Update (25.5ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = ?, "updated_at" = ? WHERE "ar_internal_metadata"."key" = ?[0m  [["value", "test"], ["updated_at", "2021-06-28 01:55:43.202539"], ["key", "environment"]]
+  [1m[35m (26.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (7.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (23.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "schema_sha1"], ["value", "d889755b0e3663d674d31d1cfc440b694fc2d630"], ["created_at", "2021-06-28 01:55:43.315379"], ["updated_at", "2021-06-28 01:55:43.315379"]]
+  [1m[35m (15.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (5.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (77.7ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Math game"], ["url", "www.Math.game"], ["category", "Math"], ["created_at", "2021-06-28 01:55:43.523137"], ["updated_at", "2021-06-28 01:55:43.523137"]]
+  [1m[35m (21.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (37.3ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Reading game"], ["url", "www.Reading.game"], ["category", "Reading"], ["created_at", "2021-06-28 01:55:43.648839"], ["updated_at", "2021-06-28 01:55:43.648839"]]
+  [1m[35m (25.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (28.6ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Speaking game"], ["url", "www.Speaking.game"], ["category", "Speaking"], ["created_at", "2021-06-28 01:55:43.739566"], ["updated_at", "2021-06-28 01:55:43.739566"]]
+  [1m[35m (19.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (27.4ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Writing game"], ["url", "www.Writing.game"], ["category", "Writing"], ["created_at", "2021-06-28 01:55:43.806068"], ["updated_at", "2021-06-28 01:55:43.806068"]]
+  [1m[35m (17.5ms)[0m  [1m[36mcommit transaction[0m
+Started POST "/api/users" for 172.21.0.1 at 2021-06-28 01:58:09 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (8.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"email"=>"dev.alex.myers@gmail.com", "username"=>"dev", "full_name"=>"Alex Myers", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.6ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (6.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dev"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (22.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "username", "full_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "dev.alex.myers@gmail.com"], ["password_digest", "$2a$12$t04CeS7ygW.UKIZiKM8Y7OX3bCl40ugYFlWhUf7ufYMVICDg1oX16"], ["username", "dev"], ["full_name", "Alex Myers"], ["created_at", "2021-06-28 01:58:10.776707"], ["updated_at", "2021-06-28 01:58:10.776707"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[35m (30.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (16.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? AND "users"."id" != ? LIMIT ?[0m  [["username", "dev"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+Completed 201 Created in 617ms (Views: 0.7ms | ActiveRecord: 109.9ms | Allocations: 13936)
+
+
+Started POST "/api/sessions" for 172.21.0.1 at 2021-06-28 01:58:14 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::SessionsController#login as */*
+  Parameters: {"username"=>"dev", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (7.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dev"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:5:in `login'
+Completed 200 OK in 438ms (Views: 0.3ms | ActiveRecord: 7.8ms | Allocations: 1109)
+
+
+Started GET "/api/games" for 172.21.0.1 at 2021-06-28 01:58:28 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GamesController#index as */*
+  [1m[36mUser Load (7.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+  [1m[36mGame Load (9.9ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/api/games_controller.rb:6:in `index'
+Completed 200 OK in 143ms (Views: 52.9ms | ActiveRecord: 49.2ms | Allocations: 7806)
+
+
+Started POST "/api/user/game_events" for 172.21.0.1 at 2021-06-28 01:58:33 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GameEventsController#create as */*
+  Parameters: {"type"=>"completed", "occured_at"=>"Sun, 27 Jun 2021 21:50:18 -0400", "game_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (6.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 500 Internal Server Error in 95ms (ActiveRecord: 19.4ms | Allocations: 3042)
+
+
+  
+ActiveRecord::SubclassNotFound (The single-table inheritance mechanism failed to locate the subclass: 'completed'. This error is raised because the column 'type' is reserved for storing the class in case of inheritance. Please rename this column if you didn't intend it to be used for storing the inheritance class or overwrite GameEvent.inheritance_column to use another column for that information.):
+  
+app/controllers/api/game_events_controller.rb:5:in `create'
+Started POST "/api/user/game_events" for 172.21.0.1 at 2021-06-28 01:58:53 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::GameEventsController#create as */*
+  Parameters: {"event_type"=>"completed", "occured_at"=>"Sun, 27 Jun 2021 21:50:18 -0400", "game_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (15.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 500 Internal Server Error in 158ms (ActiveRecord: 66.8ms | Allocations: 13533)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'event_type' for GameEvent.):
+  
+app/controllers/api/game_events_controller.rb:5:in `create'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateGameEvents (20210628005314)
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (47.7ms)[0m  [1m[35mDROP TABLE "game_events"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (12.2ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20210628005314"]]
+  [1m[35m (25.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGames (20210628005200)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (54.0ms)[0m  [1m[35mDROP TABLE "games"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (12.7ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20210628005200"]]
+  [1m[35m (20.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateUsers (20210628005051)
+  [1m[35m (1.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (94.8ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[36mActiveRecord::SchemaMigration Destroy (14.6ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = ?[0m  [["version", "20210628005051"]]
+  [1m[35m (21.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (5.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (4.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210628005051)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (35.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar, "password_digest" varchar, "username" varchar, "full_name" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (19.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210628005051"]]
+  [1m[35m (23.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGames (20210628005200)
+  [1m[35m (1.8ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (32.3ms)[0m  [1m[35mCREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "url" varchar, "category" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (14.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210628005200"]]
+  [1m[35m (18.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGameEvents (20210628005314)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (41.3ms)[0m  [1m[35mCREATE TABLE "game_events" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "game_id" integer, "occured_at" datetime, "event_type" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_user_id" ON "game_events" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_game_events_on_game_id" ON "game_events" ("game_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (15.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210628005314"]]
+  [1m[35m (24.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (6.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (5.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (25.8ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Math game"], ["url", "www.Math.game"], ["category", "Math"], ["created_at", "2021-06-28 02:02:25.267868"], ["updated_at", "2021-06-28 02:02:25.267868"]]
+  [1m[35m (16.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (26.3ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Reading game"], ["url", "www.Reading.game"], ["category", "Reading"], ["created_at", "2021-06-28 02:02:25.322487"], ["updated_at", "2021-06-28 02:02:25.322487"]]
+  [1m[35m (15.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (28.2ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Speaking game"], ["url", "www.Speaking.game"], ["category", "Speaking"], ["created_at", "2021-06-28 02:02:25.381954"], ["updated_at", "2021-06-28 02:02:25.381954"]]
+  [1m[35m (19.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mGame Create (32.1ms)[0m  [1m[32mINSERT INTO "games" ("name", "url", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Writing game"], ["url", "www.Writing.game"], ["category", "Writing"], ["created_at", "2021-06-28 02:02:25.449203"], ["updated_at", "2021-06-28 02:02:25.449203"]]
+  [1m[35m (19.3ms)[0m  [1m[36mcommit transaction[0m
+Started POST "/api/users" for 172.21.0.1 at 2021-06-28 02:02:43 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"email"=>"dev.alex.myers@gmail.com", "username"=>"dev", "full_name"=>"Alex Myers", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (6.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dev"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Create (59.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "username", "full_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["email", "dev.alex.myers@gmail.com"], ["password_digest", "$2a$12$ae8O9sdBHP5jsutO5kfPju/140hYi3eNEM8sHZRF/xaF8KRSC6dZi"], ["username", "dev"], ["full_name", "Alex Myers"], ["created_at", "2021-06-28 02:02:44.805126"], ["updated_at", "2021-06-28 02:02:44.805126"]]
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[35m (37.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `create'
+  [1m[36mUser Exists? (19.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? AND "users"."id" != ? LIMIT ?[0m  [["username", "dev"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:7:in `create'
+Completed 201 Created in 733ms (Views: 1.1ms | ActiveRecord: 167.9ms | Allocations: 12855)
+
+
+Started POST "/api/sessions" for 172.21.0.1 at 2021-06-28 02:02:48 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::SessionsController#login as */*
+  Parameters: {"username"=>"dev", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (4.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "dev"], ["LIMIT", 1]]
+  ↳ app/controllers/api/sessions_controller.rb:5:in `login'
+Completed 200 OK in 484ms (Views: 0.3ms | ActiveRecord: 4.1ms | Allocations: 1079)
+
+
+Started GET "/api/games" for 172.21.0.1 at 2021-06-28 02:03:00 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GamesController#index as */*
+  [1m[36mUser Load (5.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+  [1m[36mGame Load (4.6ms)[0m  [1m[34mSELECT "games".* FROM "games"[0m
+  ↳ app/controllers/api/games_controller.rb:6:in `index'
+Completed 200 OK in 153ms (Views: 48.4ms | ActiveRecord: 80.6ms | Allocations: 7609)
+
+
+Started POST "/api/user/game_events" for 172.21.0.1 at 2021-06-28 02:03:07 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GameEventsController#create as */*
+  Parameters: {"event_type"=>"completed", "occured_at"=>"Sun, 27 Jun 2021 21:50:18 -0400", "game_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (6.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/game_events_controller.rb:5:in `create'
+  [1m[36mGame Load (3.5ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/game_events_controller.rb:5:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/api/game_events_controller.rb:5:in `create'
+  [1m[36mUser Load (8.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/game_events_controller.rb:8:in `create'
+Completed 201 Created in 351ms (Views: 0.5ms | ActiveRecord: 33.6ms | Allocations: 16336)
+
+
+Started POST "/api/user/game_events" for 172.21.0.1 at 2021-06-28 02:04:27 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::GameEventsController#create as */*
+  Parameters: {"event_type"=>"completed", "occured_at"=>"Sun, 27 Jun 2021 21:50:18 -0400", "game_id"=>"1"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (4.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+  [1m[36mGame Load (3.9ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/game_events_controller.rb:8:in `create'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/game_events_controller.rb:8:in `create'
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/game_events_controller.rb:9:in `create'
+  [1m[36mGameEvent Create (41.3ms)[0m  [1m[32mINSERT INTO "game_events" ("user_id", "game_id", "occured_at", "event_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["game_id", 1], ["occured_at", "2021-06-28 01:50:18"], ["event_type", "completed"], ["created_at", "2021-06-28 02:04:27.705111"], ["updated_at", "2021-06-28 02:04:27.705111"]]
+  ↳ app/controllers/api/game_events_controller.rb:9:in `create'
+  [1m[35m (30.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/game_events_controller.rb:9:in `create'
+Completed 201 Created in 379ms (Views: 0.8ms | ActiveRecord: 143.0ms | Allocations: 24576)
+
+
+Started POST "/api/user/game_events" for 172.21.0.1 at 2021-06-28 02:04:47 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GameEventsController#create as */*
+  Parameters: {"event_type"=>"completed", "occured_at"=>"Sun, 27 Jun 2021 21:50:18 -0400", "game_id"=>"2"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (11.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+  [1m[36mGame Load (5.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/game_events_controller.rb:8:in `create'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/game_events_controller.rb:8:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/game_events_controller.rb:9:in `create'
+  [1m[36mGameEvent Create (47.2ms)[0m  [1m[32mINSERT INTO "game_events" ("user_id", "game_id", "occured_at", "event_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["game_id", 2], ["occured_at", "2021-06-28 01:50:18"], ["event_type", "completed"], ["created_at", "2021-06-28 02:04:47.672069"], ["updated_at", "2021-06-28 02:04:47.672069"]]
+  ↳ app/controllers/api/game_events_controller.rb:9:in `create'
+  [1m[35m (40.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/game_events_controller.rb:9:in `create'
+Completed 201 Created in 160ms (Views: 1.5ms | ActiveRecord: 105.3ms | Allocations: 6433)
+
+
+Started POST "/api/user/game_events" for 172.21.0.1 at 2021-06-28 02:04:51 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GameEventsController#create as */*
+  Parameters: {"event_type"=>"completed", "occured_at"=>"Sun, 27 Jun 2021 21:50:18 -0400", "game_id"=>"3"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (23.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+  [1m[36mGame Load (11.4ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/game_events_controller.rb:8:in `create'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/game_events_controller.rb:8:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/game_events_controller.rb:9:in `create'
+  [1m[36mGameEvent Create (32.9ms)[0m  [1m[32mINSERT INTO "game_events" ("user_id", "game_id", "occured_at", "event_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["game_id", 3], ["occured_at", "2021-06-28 01:50:18"], ["event_type", "completed"], ["created_at", "2021-06-28 02:04:51.463698"], ["updated_at", "2021-06-28 02:04:51.463698"]]
+  ↳ app/controllers/api/game_events_controller.rb:9:in `create'
+  [1m[35m (21.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/game_events_controller.rb:9:in `create'
+Completed 201 Created in 149ms (Views: 1.2ms | ActiveRecord: 89.6ms | Allocations: 6431)
+
+
+Started POST "/api/user/game_events" for 172.21.0.1 at 2021-06-28 02:04:55 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::GameEventsController#create as */*
+  Parameters: {"event_type"=>"completed", "occured_at"=>"Sun, 27 Jun 2021 21:50:18 -0400", "game_id"=>"4"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (27.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+  [1m[36mGame Load (3.5ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/game_events_controller.rb:8:in `create'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/game_events_controller.rb:8:in `create'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/game_events_controller.rb:9:in `create'
+  [1m[36mGameEvent Create (38.2ms)[0m  [1m[32mINSERT INTO "game_events" ("user_id", "game_id", "occured_at", "event_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["game_id", 4], ["occured_at", "2021-06-28 01:50:18"], ["event_type", "completed"], ["created_at", "2021-06-28 02:04:55.168129"], ["updated_at", "2021-06-28 02:04:55.168129"]]
+  ↳ app/controllers/api/game_events_controller.rb:9:in `create'
+  [1m[35m (20.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/game_events_controller.rb:9:in `create'
+Completed 201 Created in 146ms (Views: 1.0ms | ActiveRecord: 90.2ms | Allocations: 6434)
+
+
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:07:23 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  
+ActionController::RoutingError (No route matches [GET] "/api/user"):
+  
+actionpack (6.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.1.0) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.1.0) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.1.0) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.4) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.4) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.4) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.4) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.7.0) lib/rack/proxy.rb:63:in `call'
+railties (6.0.4) lib/rails/engine.rb:527:in `call'
+puma (4.3.8) lib/puma/configuration.rb:228:in `call'
+puma (4.3.8) lib/puma/server.rb:718:in `handle_request'
+puma (4.3.8) lib/puma/server.rb:472:in `process_client'
+puma (4.3.8) lib/puma/server.rb:328:in `block in run'
+puma (4.3.8) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:08:05 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (8.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 200 OK in 100ms (Views: 1.6ms | ActiveRecord: 32.8ms | Allocations: 7639)
+
+
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:09:06 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (9.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 500 Internal Server Error in 126ms (ActiveRecord: 40.2ms | Allocations: 9346)
+
+
+  
+NoMethodError (private method `select' called for #<User:0x00007feaa4353dd8>):
+  
+app/controllers/api/users_controller.rb:18:in `show'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:09:55 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (4.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 500 Internal Server Error in 98ms (ActiveRecord: 36.3ms | Allocations: 9366)
+
+
+  
+NoMethodError (private method `select' called for #<User:0x00007feaa00fd268>):
+  
+app/controllers/api/users_controller.rb:16:in `show'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:10:18 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (8.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 500 Internal Server Error in 166ms (ActiveRecord: 60.0ms | Allocations: 9398)
+
+
+  
+NoMethodError (private method `select' called for #<User:0x00007fea98c58a70>):
+  
+app/controllers/api/users_controller.rb:16:in `show'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:10:54 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 500 Internal Server Error in 97ms (ActiveRecord: 34.9ms | Allocations: 9393)
+
+
+  
+NoMethodError (undefined method `pluck' for #<User:0x000055daef81b9e0>):
+  
+app/controllers/api/users_controller.rb:16:in `show'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:11:24 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 500 Internal Server Error in 92ms (ActiveRecord: 27.1ms | Allocations: 9430)
+
+
+  
+NoMethodError (undefined method `first' for #<User:0x000055daedcce700>):
+  
+app/controllers/api/users_controller.rb:16:in `show'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:11:35 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (6.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 200 OK in 85ms (Views: 0.7ms | ActiveRecord: 30.5ms | Allocations: 7642)
+
+
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:13:53 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (7.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 200 OK in 97ms (Views: 1.4ms | ActiveRecord: 33.8ms | Allocations: 7558)
+
+
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:14:52 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 200 OK in 100ms (Views: 0.3ms | ActiveRecord: 28.5ms | Allocations: 7632)
+
+
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:19:14 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (5.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+Completed 500 Internal Server Error in 142ms (ActiveRecord: 34.4ms | Allocations: 10269)
+
+
+  
+NoMethodError (undefined method `game_events' for #<Class:0x000055daee8bd9a8>):
+  
+app/models/user.rb:22:in `total_games_played'
+app/models/user.rb:12:in `stats'
+app/controllers/api/users_controller.rb:16:in `show'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:21:33 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+  [1m[35m (2.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "game_events" WHERE "game_events"."user_id" = ? AND "game_events"."event_type" = ?[0m  [["user_id", 1], ["event_type", "completed"]]
+  ↳ app/models/user.rb:22:in `total_games_played'
+  [1m[35m (7.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "game_events" WHERE "game_events"."user_id" = ? AND "game_events"."event_type" = ? AND "game_events"."category" = ?[0m  [["user_id", 1], ["event_type", "completed"], ["category", "Math"]]
+  ↳ app/models/user.rb:26:in `total_math_games_played'
+Completed 500 Internal Server Error in 277ms (ActiveRecord: 61.7ms | Allocations: 13533)
+
+
+  
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such column: game_events.category):
+  
+app/models/user.rb:26:in `total_math_games_played'
+app/models/user.rb:13:in `stats'
+app/controllers/api/users_controller.rb:16:in `show'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 02:25:44 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (4.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:31:in `logged_in_user'
+  [1m[35m (3.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (4.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (4.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (4.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+Completed 200 OK in 307ms (Views: 0.3ms | ActiveRecord: 75.0ms | Allocations: 18835)
+
+

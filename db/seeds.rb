@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+game_categories = ["Math", "Reading", "Speaking", "Writing"]
+
+game_categories.each do |cat|
+  Game.create(name: "#{cat} game", category: cat, url: "www.#{cat}.game")
+end
