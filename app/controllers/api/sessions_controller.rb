@@ -1,20 +1,24 @@
-class Api::SessionsController < ApplicationController
-  skip_before_action :authorized, only: [:login]
+# frozen_string_literal: true
 
-  def login
-    @user = User.find_by(username: params[:username])
+module Api
+  class SessionsController < ApplicationController
+    skip_before_action :authorized, only: [:login]
 
-    if @user && @user.authenticate(params[:password])
-      token = encode_token({user_id: @user.id})
-      render json: {token: token}
-    else
-      render json: {error: "Invalid username or password"}
+    def login
+      @user = User.find_by(username: params[:username])
+
+      if @user&.authenticate(params[:password])
+        token = encode_token({ user_id: @user.id })
+        render json: { token: token }
+      else
+        render json: { error: 'Invalid username or password' }
+      end
     end
-  end
 
-  private
+    private
 
-  def user_params
-    params.permit(:username, :password, :password_confirmation)
+    def user_params
+      params.permit(:username, :password, :password_confirmation)
+    end
   end
 end

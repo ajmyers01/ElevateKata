@@ -1,8 +1,12 @@
-class Api::GamesController < ApplicationController
-  before_action :authorized
+# frozen_string_literal: true
 
-  def index
-    @games = Game.all
-    render json: {games: @games}
+module Api
+  class GamesController < ApplicationController
+    before_action :authorized
+
+    def index
+      @games = Game.all
+      render json: { games: @games }
+    end
   end
 end

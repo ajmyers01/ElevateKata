@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   before_action :authorized
 
-  # We don't care about cross origin Protection cause we are making an api 
+  # We don't care about cross origin Protection cause we are making an api
   protect_from_forgery with: :null_session
 
   def encode_token(payload)
-    JWT.encode(payload, ENV["SUPER_SECRET"])
+    JWT.encode(payload, ENV['SUPER_SECRET'])
   end
 
   def auth_header
@@ -18,7 +20,7 @@ class ApplicationController < ActionController::Base
       token = auth_header.split(' ')[1]
       # header: { 'Authorization': 'Bearer <token>' }
       begin
-        JWT.decode(token, ENV["SUPER_SECRET"], true, algorithm: 'HS256')
+        JWT.decode(token, ENV['SUPER_SECRET'], true, algorithm: 'HS256')
       rescue JWT::DecodeError
         nil
       end
@@ -37,6 +39,6 @@ class ApplicationController < ActionController::Base
   end
 
   def authorized
-    render json: { message: "Please log in" }, status: :unauthorized unless logged_in?
+    render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
   end
 end
