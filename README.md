@@ -84,3 +84,16 @@ Start webpack for the frontend:
 ```sh
 docker-compose up webpack
 ```
+
+Run the Test Suite
+```sh
+docker-compose run --rm app rake test
+```
+
+### Testing
+
+Postman Collection: 
+
+https://www.getpostman.com/collections/455da189904037becc4a
+
+You have to create a user, then add the token returned into headers.
