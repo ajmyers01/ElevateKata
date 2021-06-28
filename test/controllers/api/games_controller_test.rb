@@ -8,13 +8,13 @@ module Api
       @user = users(:one)
     end
 
-    test "index" do 
+    test 'index' do
       login(@user)
 
-      get "/api/games", headers: {'HTTP_AUTHORIZATION': "Bearer #{@token}" }
+      get '/api/games', headers: { 'HTTP_AUTHORIZATION': "Bearer #{@token}" }
 
       json_response = JSON.parse(response.body)
-      assert_equal Game.all.count, json_response["games"].count 
+      assert_equal Game.all.count, json_response['games'].count
     end
   end
 end
