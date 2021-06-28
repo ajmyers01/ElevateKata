@@ -14,7 +14,8 @@ class User < ApplicationRecord
       total_math_games_played: total_math_games_played,
       total_reading_games_played: total_reading_games_played,
       total_speaking_games_played: total_speaking_games_played,
-      total_writing_games_played: total_writing_games_played
+      total_writing_games_played: total_writing_games_played,
+      current_streak_in_days: current_streak_in_days
     }
   end
 
@@ -36,5 +37,29 @@ class User < ApplicationRecord
 
   def total_writing_games_played
     games.where(category: 'Writing').count
+  end
+
+  def current_streak_in_days
+    streak_count = 0
+    today = DateTime.now
+
+    dates_array = game_events.order("occured_at DESC").map do |ge| 
+      ge.occured_at.to_date
+    end
+    dates_array.uniq!
+
+    streak_count += 1 if dates_array.include?(Date.today)
+    i = 1
+
+    while true
+      if dates_array.include?(Date.today - i.days)
+        i += 1
+        streak_count += 1 
+      else
+        break
+      end
+    end
+
+    streak_count
   end
 end

@@ -1188,3 +1188,310 @@ Can't verify CSRF token authenticity.
 Completed 200 OK in 407ms (Views: 0.3ms | ActiveRecord: 10.1ms | Allocations: 5178)
 
 
+Started POST "/api/user/game_events" for 172.21.0.1 at 2021-06-28 03:16:33 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::GameEventsController#create as */*
+  Parameters: {"event_type"=>"completed", "occured_at"=>"Sun, 26 Jun 2021 21:50:18 -0400", "game_id"=>"4"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (3.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[36mGame Load (5.3ms)[0m  [1m[34mSELECT "games".* FROM "games" WHERE "games"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/game_events_controller.rb:11:in `create'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/game_events_controller.rb:11:in `create'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/api/game_events_controller.rb:12:in `create'
+  [1m[36mGameEvent Create (34.7ms)[0m  [1m[32mINSERT INTO "game_events" ("user_id", "game_id", "occured_at", "event_type", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["user_id", 1], ["game_id", 4], ["occured_at", "2021-06-27 01:50:18"], ["event_type", "completed"], ["created_at", "2021-06-28 03:16:34.321173"], ["updated_at", "2021-06-28 03:16:34.321173"]]
+  ↳ app/controllers/api/game_events_controller.rb:12:in `create'
+  [1m[35m (23.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/api/game_events_controller.rb:12:in `create'
+Completed 201 Created in 254ms (Views: 1.2ms | ActiveRecord: 74.9ms | Allocations: 23759)
+
+
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:20:11 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (5.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (5.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (4.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+  [1m[36mGameEvent Load (4.1ms)[0m  [1m[34mSELECT "game_events".* FROM "game_events" WHERE "game_events"."user_id" = ? ORDER BY occured_at DESC[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:46:in `map'
+Completed 500 Internal Server Error in 332ms (ActiveRecord: 103.4ms | Allocations: 22315)
+
+
+  
+NoMethodError (undefined method `yesterday' for nil:NilClass):
+  
+app/models/user.rb:53:in `block in current_streak_in_days'
+app/models/user.rb:52:in `each'
+app/models/user.rb:52:in `reduce'
+app/models/user.rb:52:in `current_streak_in_days'
+app/models/user.rb:18:in `stats'
+app/controllers/api/users_controller.rb:19:in `show'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:20:35 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (3.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (4.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (5.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (8.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+  [1m[36mGameEvent Load (9.8ms)[0m  [1m[34mSELECT "game_events".* FROM "game_events" WHERE "game_events"."user_id" = ? ORDER BY occured_at DESC[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:46:in `map'
+Completed 500 Internal Server Error in 288ms (ActiveRecord: 121.8ms | Allocations: 22347)
+
+
+  
+NoMethodError (undefined method `yesterday' for nil:NilClass):
+  
+app/models/user.rb:54:in `block in current_streak_in_days'
+app/models/user.rb:53:in `each'
+app/models/user.rb:53:in `reduce'
+app/models/user.rb:53:in `current_streak_in_days'
+app/models/user.rb:18:in `stats'
+app/controllers/api/users_controller.rb:19:in `show'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:20:57 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (6.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (4.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (4.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (7.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+  [1m[36mGameEvent Load (6.2ms)[0m  [1m[34mSELECT "game_events".* FROM "game_events" WHERE "game_events"."user_id" = ? ORDER BY occured_at DESC[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:46:in `map'
+Completed 200 OK in 305ms (Views: 0.6ms | ActiveRecord: 114.7ms | Allocations: 21772)
+
+
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:21:10 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (5.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[35m (4.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (5.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (19.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (4.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (5.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+  [1m[36mGameEvent Load (3.4ms)[0m  [1m[34mSELECT "game_events".* FROM "game_events" WHERE "game_events"."user_id" = ? ORDER BY occured_at DESC[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:46:in `map'
+Completed 200 OK in 263ms (Views: 0.3ms | ActiveRecord: 109.6ms | Allocations: 21775)
+
+
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:22:16 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (3.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (5.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+  [1m[36mGameEvent Load (3.7ms)[0m  [1m[34mSELECT "game_events".* FROM "game_events" WHERE "game_events"."user_id" = ? ORDER BY occured_at DESC[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:46:in `map'
+Completed 500 Internal Server Error in 260ms (ActiveRecord: 89.1ms | Allocations: 22283)
+
+
+  
+NoMethodError (undefined method `to_date' for nil:NilClass
+Did you mean?  to_d):
+  
+app/models/user.rb:53:in `block in current_streak_in_days'
+app/models/user.rb:52:in `each'
+app/models/user.rb:52:in `reduce'
+app/models/user.rb:52:in `current_streak_in_days'
+app/models/user.rb:18:in `stats'
+app/controllers/api/users_controller.rb:19:in `show'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:24:28 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[35m (4.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (3.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (4.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (7.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (3.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+  [1m[36mGameEvent Load (4.5ms)[0m  [1m[34mSELECT "game_events".* FROM "game_events" WHERE "game_events"."user_id" = ? ORDER BY occured_at DESC[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:46:in `map'
+Completed 200 OK in 350ms (Views: 0.7ms | ActiveRecord: 126.0ms | Allocations: 21740)
+
+
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:25:30 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (6.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (6.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+  [1m[36mGameEvent Load (3.2ms)[0m  [1m[34mSELECT "game_events".* FROM "game_events" WHERE "game_events"."user_id" = ? ORDER BY occured_at DESC[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:46:in `map'
+Completed 200 OK in 250ms (Views: 0.4ms | ActiveRecord: 87.4ms | Allocations: 21679)
+
+
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:25:41 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[35m (5.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (3.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (5.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+  [1m[36mGameEvent Load (5.7ms)[0m  [1m[34mSELECT "game_events".* FROM "game_events" WHERE "game_events"."user_id" = ? ORDER BY occured_at DESC[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:46:in `map'
+Completed 200 OK in 250ms (Views: 0.3ms | ActiveRecord: 86.0ms | Allocations: 21775)
+
+
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:26:40 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (7.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[35m (6.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (6.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (3.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (8.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (6.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+  [1m[36mGameEvent Load (6.1ms)[0m  [1m[34mSELECT "game_events".* FROM "game_events" WHERE "game_events"."user_id" = ? ORDER BY occured_at DESC[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:46:in `map'
+Completed 500 Internal Server Error in 340ms (ActiveRecord: 120.5ms | Allocations: 22658)
+
+
+  
+NoMethodError (undefined method `contains' for [Mon, 28 Jun 2021, Sun, 27 Jun 2021]:Array):
+  
+app/models/user.rb:51:in `current_streak_in_days'
+app/models/user.rb:18:in `stats'
+app/controllers/api/users_controller.rb:19:in `show'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:28:02 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (3.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (4.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (5.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (3.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+  [1m[36mGameEvent Load (5.8ms)[0m  [1m[34mSELECT "game_events".* FROM "game_events" WHERE "game_events"."user_id" = ? ORDER BY occured_at DESC[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:46:in `map'
+Completed 200 OK in 256ms (Views: 0.7ms | ActiveRecord: 95.6ms | Allocations: 21731)
+
+
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:31:11 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (5.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (4.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (10.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (10.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (4.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+  [1m[36mGameEvent Load (4.2ms)[0m  [1m[34mSELECT "game_events".* FROM "game_events" WHERE "game_events"."user_id" = ? ORDER BY occured_at DESC[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:46:in `map'
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:31:36 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Started GET "/api/user" for 172.21.0.1 at 2021-06-28 03:33:58 +0000
+Cannot render console from 172.21.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (14.5ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (5.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#show as */*
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:33:in `logged_in_user'
+  [1m[35m (9.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:23:in `total_games_played'
+  [1m[35m (9.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Math"]]
+  ↳ app/models/user.rb:27:in `total_math_games_played'
+  [1m[35m (9.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Reading"]]
+  ↳ app/models/user.rb:31:in `total_reading_games_played'
+  [1m[35m (9.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Speaking"]]
+  ↳ app/models/user.rb:35:in `total_speaking_games_played'
+  [1m[35m (5.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "games" INNER JOIN "game_events" ON "games"."id" = "game_events"."game_id" WHERE "game_events"."user_id" = ? AND "games"."category" = ?[0m  [["user_id", 1], ["category", "Writing"]]
+  ↳ app/models/user.rb:39:in `total_writing_games_played'
+  [1m[36mGameEvent Load (11.7ms)[0m  [1m[34mSELECT "game_events".* FROM "game_events" WHERE "game_events"."user_id" = ? ORDER BY occured_at DESC[0m  [["user_id", 1]]
+  ↳ app/models/user.rb:46:in `map'
+Completed 200 OK in 543ms (Views: 0.6ms | ActiveRecord: 146.1ms | Allocations: 26571)
+
+
