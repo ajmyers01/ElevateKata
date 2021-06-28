@@ -4,7 +4,7 @@ Coding Kata for Elevate Labs
 ---
 ### Requirements
 
-Add Them here. 
+Located at the Root of the project
 
 ---
 
@@ -97,3 +97,15 @@ Postman Collection:
 https://www.getpostman.com/collections/455da189904037becc4a
 
 You have to create a user, then add the token returned into headers.
+
+### Reflection on choices
+I utilized a docker file from a personal project to cut down on time so that is why there are a few extra moving pieces. I chose to use JWT for my authorization across my API, and just Bcrypt for password encryption into the postgres database for the users. I added the end points required.
+
+I started out by writing out tables and relationships in my notebook as well as a creating a Postman collection with requests that matched the documentation.
+Then I generated my migrations and populated my database.
+
+Things I could improve on:
+
+Better validations
+Take a closer look at the Rubocop, however some of the errors seemed non applicable or unnecessary or against files that didn't need changed. 
+I should have and normally do use smaller incremental commits.
