@@ -43,7 +43,7 @@ class User < ApplicationRecord
     streak_count = 0
     today = DateTime.now
 
-    dates_array = game_events.order("occured_at DESC").map do |ge| 
+    dates_array = game_events.order('occured_at DESC').map do |ge|
       ge.occured_at.to_date
     end
     dates_array.uniq!
@@ -51,10 +51,10 @@ class User < ApplicationRecord
     streak_count += 1 if dates_array.include?(Date.today)
     i = 1
 
-    while true
+    loop do
       if dates_array.include?(Date.today - i.days)
         i += 1
-        streak_count += 1 
+        streak_count += 1
       else
         break
       end
